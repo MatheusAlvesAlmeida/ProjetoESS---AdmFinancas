@@ -13,7 +13,7 @@ WHEN I put my salary as {4000 reais}
 AND I see the option to set other income source sum
 WHEN I put my salary as {4000 reais}
 WHEN I confirm the changes
-THEN I'm still on the {salary and income sources} page and see the edits I just made
+THEN I'm still on the {salary and income sources} page and see the edits I just made.
 
 Scenario: Adding salary and income source with negative values
 Background: 
@@ -40,7 +40,7 @@ AND I'm on the {salary and income sources} page
 AND I see the salary filled with the value {4000 reais}
 WHEN I put my new salary as {5000 reais}
 WHEN I confirm the changes
-THEN I'm still on the {salary and income sources} page and see the edits I just made
+THEN I'm still on the {salary and income sources} page and see the edits I just made.
 
 Scenario: Editing Salary and Income Sources Incorrectly
 Background: 
@@ -49,4 +49,5 @@ AND I'm on the {salary and income sources} page
 AND I see the salary filled with the value {5000 reais}
 WHEN I put my new salary as {' '}
 WHEN I confirm the changes
-THEN I'm still on the {salary and income sources} page and I see an alert stating that the salary must be a number.
+THEN I'm still on the {salary and income sources} page and I see an alert stating that the salary must be a number
+Then I stay on the page.
