@@ -12,6 +12,7 @@ THEN Vejo a opção de fixar valor
 WHEN Eu fixo {20%} do meu salário de {R$4000} para {Feira do mês}
 AND Eu confirmo as alterações
 THEN continuo na página de {meu salário} e vejo as edições que acabei de fazer
+THEN continuo logado com o usuário {"Matheus"} e senha {"matheus12334"}
 
 Scenario: Adicionando gastos mensais preechendo com % a mais que o possível (100%)
 Background: 
