@@ -15,6 +15,7 @@ WHEN I put my salary as {4000 reais}
 WHEN I confirm the changes
 THEN I'm still on the {salary and income sources} page and see the edits I just made.
 
+
 Scenario: Adding characters instead of numbers to salary
 Background: 
 GIVEN I'm logged into the system with the user {"Gabriel"} and password {"gabriel123"}
