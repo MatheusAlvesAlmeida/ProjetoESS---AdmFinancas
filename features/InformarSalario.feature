@@ -2,7 +2,7 @@ Feature: Informar salário e fontes de renda
 
 AS A system user
 I NEED A way to save salary and income sources
-SO THAT I can organize my sources of income in a structured way
+SO THAT I can organize my sources of income in a structured way.
 
 Scenario: Adding Salaries and Income Sources Successfully
 Background: 
