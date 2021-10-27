@@ -51,8 +51,8 @@ AND Confirmo as alterações
 THEN continuo na página de {meu salário} e vejo um alerta pedindo para rever o conteúdo preenchido nos tipos de gastos
 
 Scenario: Editando gastos mensais incorretamente
-Background: 
-GIVEN Estou logado no sistema com o usuário {"Matheus"} e senha {"matheus12345"}
+Background:  
+GIVEN Estou logado no sistema com o usuário {"Matheus"} e senha {"matheus1234"}
 AND I Estou na página de {meu salário}
 THEN Vejo a coluna de gastos mensais com os tipos {"Alimentação"}, {"Transporte"} e {"Aluguel"} e os valores {"R$9,00"}, {"R$9,00"} e {"R$9,00"} para cada tipo.
 THEN Edito o tipo de gasto {"Aluguel"} para {"Moradia"} e altero o seu valor para {"-R$9,00"}
