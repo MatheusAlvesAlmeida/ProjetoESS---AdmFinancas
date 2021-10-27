@@ -5,7 +5,6 @@ AS A system user
 I NEED A way to save salary and income sources
 SO THAT I can organize my sources of income in a structured way.
 
-
 Scenario: Adding Salaries and Income Sources Successfully
 Background: 
 GIVEN I'm logged into the system with the user {"Gabriel"} and password {"gabriel123"}
