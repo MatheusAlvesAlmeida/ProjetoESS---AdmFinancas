@@ -12,6 +12,7 @@ THEN Vejo a opção de fixar valor
 WHEN Eu fixo {20%} do meu salário de {R$4000} para {Feira do mês}
 AND Eu confirmo as alterações
 THEN continuo na página de {meu salário} e vejo as edições que acabei de fazer
+THEN continuo logado com o usuário {"Matheus"} e senha {"matheus12334"}
 
 Scenario: Adicionando gastos mensais preechendo com % a mais que o possível (100%)
 Background: 
@@ -56,4 +57,4 @@ AND I Estou na página de {meu salário}
 THEN Vejo a coluna de gastos mensais com os tipos {"Alimentação"}, {"Transporte"} e {"Aluguel"} e os valores {"R$9,00"}, {"R$9,00"} e {"R$9,00"} para cada tipo.
 THEN Edito o tipo de gasto {"Aluguel"} para {"Moradia"} e altero o seu valor para {"-R$9,00"}
 AND Confirmo as alterações
-THEN continuo na página de {meu salário} e vejo um alerta pedindo para rever o conteúdo preenchido nos tipos de gastos
+THEN continuo na página de {meu salário} e vejo um alerta pedindo para rever o valor preenchido nos tipos de gastos
