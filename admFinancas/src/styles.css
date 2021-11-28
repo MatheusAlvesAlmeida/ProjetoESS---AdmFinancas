@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-button-back {
+  color: black;
+}
