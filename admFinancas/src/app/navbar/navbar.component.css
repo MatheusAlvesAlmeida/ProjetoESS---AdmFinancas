@@ -1,0 +1,11 @@
+.navbar {
+    width: 100vw;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.icon-display {
+    transform: scale(2);
+    padding: 1rem;
+}
