@@ -5,6 +5,7 @@ import { GraphicalReportsComponent } from './graphical-reports/graphical-reports
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NewExpenseComponent } from './new-expense/new-expense.component';
+import { SigninComponent } from './signin/signin.component';
 import { SourcersIncomeComponent } from './sourcers-income/sourcers-income.component';
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'expenses', component: ExpensesComponent },
   { path: 'graphicalReports', component: GraphicalReportsComponent },
   { path: 'newExpense', component: NewExpenseComponent },
+  { path: 'cadastro', component: SigninComponent },
 ];
 
 @NgModule({
