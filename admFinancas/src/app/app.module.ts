@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { ExpensesFormComponent } from './expenses/components/expenses-form/expenses-form.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MatIconModule } from '@angular/material/icon';
     ExpensesComponent,
     NewExpenseComponent,
     GraphicalReportsComponent,
-    NavbarComponent
+    NavbarComponent,
+    ExpensesFormComponent
   ],
   imports: [
     BrowserModule,
