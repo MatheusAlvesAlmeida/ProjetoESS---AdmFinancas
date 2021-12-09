@@ -1,15 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ViewChild} from '@angular/core';
-import {MatTable, MatTableModule} from '@angular/material/table';
+import { ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
+import { ExpensesTable } from '../../types/expenses';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
+const ELEMENT_DATA: ExpensesTable[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
@@ -27,6 +21,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './expenses-form.component.html',
   styleUrls: ['./expenses-form.component.css']
 })
+
 export class ExpensesFormComponent implements OnInit {
 
   constructor() { }
@@ -37,7 +32,7 @@ export class ExpensesFormComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = [...ELEMENT_DATA];
 
-  @ViewChild(MatTable) table: MatTable<PeriodicElement> | undefined;
+  @ViewChild(MatTable) table: MatTable<ExpensesTable> | undefined;
 
   addData() {
     const randomElementIndex = Math.floor(Math.random() * ELEMENT_DATA.length);
