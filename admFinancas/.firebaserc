@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "admfinancas-a0c88": {
+      "hosting": {
+        "admFinancas": [
+          "admfinancas-a0c88"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "admfinancas-a0c88"
+  }
+}
