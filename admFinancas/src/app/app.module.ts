@@ -10,6 +10,7 @@ import { SourcersIncomeComponent } from './sourcers-income/sourcers-income.compo
 import { NewExpenseComponent } from './new-expense/new-expense.component';
 import { GraphicalReportsComponent } from './graphical-reports/graphical-reports.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ExpensesModule } from './expenses/expenses.module';
 
 
 // Material design
@@ -19,7 +20,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { ExpensesFormComponent } from './expenses/components/expenses-form/expenses-form.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,6 @@ import { ExpensesFormComponent } from './expenses/components/expenses-form/expen
     NewExpenseComponent,
     GraphicalReportsComponent,
     NavbarComponent,
-    ExpensesFormComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +40,8 @@ import { ExpensesFormComponent } from './expenses/components/expenses-form/expen
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    ExpensesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
