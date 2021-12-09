@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ViewChild} from '@angular/core';
-import {MatTableModule} from '@angular/material/table';
+import {MatTable, MatTableModule} from '@angular/material/table';
 
 export interface PeriodicElement {
   name: string;
@@ -37,7 +37,7 @@ export class ExpensesFormComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = [...ELEMENT_DATA];
 
-  @ViewChild(MatTableModule) table: MatTableModule<PeriodicElement> | undefined;
+  @ViewChild(MatTable) table: MatTable<PeriodicElement> | undefined;
 
   addData() {
     const randomElementIndex = Math.floor(Math.random() * ELEMENT_DATA.length);

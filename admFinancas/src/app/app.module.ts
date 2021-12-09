@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { SourcersIncomeComponent } from './sourcers-income/sourcers-income.component';
-import { ExpensesComponent } from './expenses/expenses.component';
 import { NewExpenseComponent } from './new-expense/new-expense.component';
 import { GraphicalReportsComponent } from './graphical-reports/graphical-reports.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -28,7 +27,6 @@ import { ExpensesFormComponent } from './expenses/components/expenses-form/expen
     LoginComponent,
     HomeComponent,
     SourcersIncomeComponent,
-    ExpensesComponent,
     NewExpenseComponent,
     GraphicalReportsComponent,
     NavbarComponent,
