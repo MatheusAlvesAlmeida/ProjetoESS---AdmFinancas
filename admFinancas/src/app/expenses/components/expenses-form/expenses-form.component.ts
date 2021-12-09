@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
+import {MatDialog} from '@angular/material/dialog';
 import { ExpensesTable } from '../../types/expenses';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 
 const ELEMENT_DATA: ExpensesTable[] = [
-  {percentage: 20, type: 'Alimentação'},
-  {percentage: 30, type: 'Aluguel'},
-  {percentage: 40, type: 'Investimentos'},
-  {percentage: 50, type: 'Treino'}
+  {id: 1, percentage: 20, type: 'Alimentação'},
+  {id: 2, percentage: 30, type: 'Aluguel'},
+  {id: 3, percentage: 25, type: 'Treino'}
 ];
 
 @Component({
@@ -17,8 +18,11 @@ const ELEMENT_DATA: ExpensesTable[] = [
 })
 
 export class ExpensesFormComponent implements OnInit {
+  
+  enterPercentage: number = 0;
+  enterType: string = "";
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -29,14 +33,32 @@ export class ExpensesFormComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<ExpensesTable> | undefined;
 
   addData() {
-    const randomElementIndex = Math.floor(Math.random() * ELEMENT_DATA.length);
-    this.dataSource.push(ELEMENT_DATA[randomElementIndex]);
+    if(this.checkInput()){
+      this.inputError();
+      return;
+    }
+    const newElement = {id: 1, percentage: this.enterPercentage, type: this.enterType}
+    this.dataSource.push(newElement);
     if(this.table) this.table.renderRows();
   }
 
   removeData() { 
     this.dataSource.pop();
     if(this.table) this.table.renderRows();
+  }
+
+  checkInput(){
+    let diff = 100;
+    this.dataSource.forEach(element => {
+      diff -= element.percentage
+    });
+    console.log(diff)
+    if(this.enterType == "" || this.enterPercentage <= 0 || this.enterPercentage > diff) return true;
+    return false;
+  }
+
+  inputError() {
+    this.dialog.open(ErrorDialogComponent);
   }
 
 }
