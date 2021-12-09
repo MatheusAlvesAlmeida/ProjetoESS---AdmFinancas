@@ -5,7 +5,6 @@ import { ExpensesFacade } from './expenses.facade';
 import { ExpensesComponent } from './pages/expenses.component';
 import { ExpensesRoutingModule } from './expenses-routing.module';
 
-
 //Material
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
