@@ -8,10 +8,10 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { SourcersIncomeComponent } from './sourcers-income/sourcers-income.component';
-import { ExpensesComponent } from './expenses/expenses.component';
 import { NewExpenseComponent } from './new-expense/new-expense.component';
 import { GraphicalReportsComponent } from './graphical-reports/graphical-reports.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ExpensesModule } from './expenses/expenses.module';
 
 
 // Material design
@@ -36,7 +36,6 @@ import { SigninComponent } from './signin/signin.component';
     LoginComponent,
     HomeComponent,
     SourcersIncomeComponent,
-    ExpensesComponent,
     NewExpenseComponent,
     GraphicalReportsComponent,
     NavbarComponent,
