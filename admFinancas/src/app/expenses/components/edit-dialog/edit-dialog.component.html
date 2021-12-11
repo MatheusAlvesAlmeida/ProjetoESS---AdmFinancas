@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Editar gasto fixo</h1>
+<div mat-dialog-content>
+    <p>Qual é o título do novo tipo de gasto?</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Tipo de gasto</mat-label>
+        <input matInput [(ngModel)]="data.type">
+    </mat-form-field>
+    <p>Qual é a nova porcentagem do título de gasto?</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Porcentagem</mat-label>
+        <input matInput [(ngModel)]="data.percentage">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>
