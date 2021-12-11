@@ -34,11 +34,11 @@ export class ExpensesFormComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<ExpensesTable> | undefined;
 
   addData() {
-    if(this.checkInput()){
+    const newElement = {id: this.dataSource.length, percentage: this.enterPercentage, type: this.enterType}
+    if(this.checkInput(newElement)){
       this.inputError();
       return;
     }
-    const newElement = {id: this.dataSource.length, percentage: this.enterPercentage, type: this.enterType}
     this.dataSource.push(newElement);
     if(this.table) this.table.renderRows();
   }
@@ -56,9 +56,7 @@ export class ExpensesFormComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.enterPercentage = result.percentage;
-      this.enterType = result.type;
-      if(this.checkInput()){
+      if(this.checkInput(result)){
         this.inputError();
         return;
       }
@@ -67,13 +65,13 @@ export class ExpensesFormComponent implements OnInit {
     });
   }
 
-  checkInput(){
+  checkInput(obj: ExpensesTable){
     let diff = 100;
     this.dataSource.forEach(element => {
       diff -= element.percentage
     });
     console.log(diff)
-    if(this.enterType == "" || this.enterPercentage <= 0 || this.enterPercentage > diff) return true;
+    if(obj.type == "" || obj.percentage <= 0 || obj.percentage > diff) return true;
     return false;
   }
 
