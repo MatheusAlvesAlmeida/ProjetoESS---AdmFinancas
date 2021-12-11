@@ -52,6 +52,7 @@ import { SigninComponent } from './signin/signin.component';
     MatSelectModule,
     MatIconModule,
     FormsModule,
+    ExpensesModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

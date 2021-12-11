@@ -12,6 +12,7 @@ import {FormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -29,7 +30,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 		FormsModule,
 		MatButtonModule,
 		MatCardModule,
-		MatDialogModule
+		MatDialogModule,
+		MatIconModule
 	],
 })
 export class ExpensesModule {}
