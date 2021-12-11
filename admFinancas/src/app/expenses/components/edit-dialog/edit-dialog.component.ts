@@ -7,6 +7,7 @@ import { ExpensesTable } from '../../types/expenses';
   templateUrl: './edit-dialog.component.html'
 })
 export class EditDialogComponent {
+  not = null;
   constructor(
     public dialogRef: MatDialogRef<EditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ExpensesTable,
