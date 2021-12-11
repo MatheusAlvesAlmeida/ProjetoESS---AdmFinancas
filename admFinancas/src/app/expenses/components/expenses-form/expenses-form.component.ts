@@ -28,7 +28,7 @@ export class ExpensesFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  displayedColumns: string[] = ['percentage', 'type'];
+  displayedColumns: string[] = ['percentage', 'type', 'actions'];
   dataSource = [...ELEMENT_DATA];
 
   @ViewChild(MatTable) table: MatTable<ExpensesTable> | undefined;
@@ -55,13 +55,14 @@ export class ExpensesFormComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      if(this.checkInput(result)){
-        this.inputError();
-        return;
+      if(result != null){
+        if(this.checkInput(result)){
+          this.inputError();
+          return;
+        }
+        this.dataSource[id] = result;
+        if(this.table) this.table.renderRows();
       }
-      this.dataSource[id] = result;
-      if(this.table) this.table.renderRows();
     });
   }
 
