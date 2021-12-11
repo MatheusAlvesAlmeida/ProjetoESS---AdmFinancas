@@ -42,9 +42,13 @@ export class ExpensesFormComponent implements OnInit {
     if(this.table) this.table.renderRows();
   }
 
-  removeData() { 
-    this.dataSource.pop();
+  removeData(id: number) { 
+    this.dataSource = this.dataSource.filter(obj => obj.id !== id);
     if(this.table) this.table.renderRows();
+  }
+
+  editData(){
+    
   }
 
   checkInput(){

@@ -16,9 +16,6 @@
         <button mat-raised-button (click)="addData()" class="demo-button">
             Adicionar gasto
         </button>
-        <button mat-raised-button [disabled]="!dataSource.length" (click)="removeData()" class="demo-button">
-            Remover gasto
-        </button>
     </div>
 </mat-card>
 
@@ -33,7 +30,14 @@
     <!-- Type Column -->
     <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef>Tipo de gasto</th>
-        <td mat-cell *matCellDef="let element">{{element.type}}</td>
+        <td mat-cell *matCellDef="let element">{{element.type}}
+            <button mat-icon-button color="warn" (click)="editData()">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="removeData(element.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
