@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
+import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 
 
 
@@ -21,7 +22,8 @@ import {MatIconModule} from '@angular/material/icon';
 	declarations: [
 		ExpensesComponent,
 		ExpensesFormComponent,
-		ErrorDialogComponent
+		ErrorDialogComponent,
+  EditDialogComponent
 	],
 	imports: [
 		ExpensesRoutingModule,
