@@ -6,7 +6,7 @@
     "scripts": {
         "test": "npm run tsc && jasmine --config=./spec/support/jasmine.json",
         "tsc": "node ./node_modules/typescript/bin/tsc",
-        "start": "npx nodemon --exec ts-node --files ta-server.ts"
+        "start": "npx nodemon --exec ts-node --files api.ts"
     },
     "license": "MIT",
     "dependencies": {
