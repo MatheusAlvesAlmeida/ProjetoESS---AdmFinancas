@@ -25,6 +25,11 @@ export class ExpensesAPI {
     return this.expensesArray;
   }
 
+  delete(id: number){
+    this.expensesArray = this.expensesArray.filter(obj => obj.id !== id);
+    return this.expensesArray;
+  }
+
   checkInsert(obj: ExpensesTable): boolean {
     let diff = 100;
     this.expensesArray.forEach((element) => {
