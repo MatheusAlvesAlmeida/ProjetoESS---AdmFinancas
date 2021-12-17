@@ -7,11 +7,13 @@ export class ExpensesAPI {
     return this.expensesArray;
   }
 
-  insertExpenses(expensesTable: ExpensesTable) {
-    if (this.checkInsert(expensesTable)) {
-      return null;
-    }
-    this.expensesArray[expensesTable.id] = expensesTable;
+  insertExpenses(newExpenses: ExpensesTable[]) {
+    newExpenses.forEach(element => {
+      if (this.checkInsert(element)) {
+        return null;
+      }
+    });
+    this.expensesArray = newExpenses;
     return this.expensesArray;
   }
 
