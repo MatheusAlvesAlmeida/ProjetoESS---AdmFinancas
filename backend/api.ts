@@ -3,9 +3,12 @@ import bodyParser = require("body-parser");
 import nodemailer = require("nodemailer");
 const cron = require("node-cron");
 
-import { Expenses } from "../common/expenses";
+import { ExpensesTable } from "../common/expenses";
+import { ExpensesAPI } from "./expenses/expenses-api";
 
 var api = express();
+
+var expensesArray: ExpensesAPI = new ExpensesAPI();
 
 var allowCrossDomain = function (req: any, res: any, next: any) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -17,6 +20,44 @@ api.use(allowCrossDomain);
 
 api.use(bodyParser.json());
 
+//Métodos das APIs
+//Métodos do módulo de expenses
+api.get("/expenses", function (req: express.Request, res: express.Response) {
+  res.send(expensesArray.getExpensesArray());
+});
+
+api.put("/expenses", function (req: express.Request, res: express.Response) {
+  let newExp: ExpensesTable = <ExpensesTable>req.body;
+  const result = expensesArray.updateExpenses(newExp);
+  if (result) {
+    res.send({ success: "O gasto fixo foi atualizado!" });
+  } else {
+    res.send({ failure: "O gasto fixo não foi atualizado!" });
+  }
+});
+
+api.post("/expenses", function (req: express.Request, res: express.Response) {
+  let newExpenses: ExpensesTable[] = <ExpensesTable[]>req.body;
+  const result = expensesArray.insertExpenses(newExpenses);
+
+  if (result) {
+    res.send({ success: "Os gastos fixos foram cadastrados!" });
+  } else {
+    res.send({ failure: "Os gastos fixos não foram cadastrados!" });
+  }
+});
+
+api.delete("/expenses", function (req: express.Request, res: express.Response) {
+  let expenseToDelete: number = <number>req.body;
+  const result = expensesArray.delete(expenseToDelete);
+  if (result) {
+    res.send({ success: "O gasto fixo foi removido com sucesso" });
+  } else {
+    res.send({ failure: "O gasto fixo não foi removido" });
+  }
+});
+
+//Exportando servidor
 var server = api.listen(3000, function () {
   console.log("Listening on port 3000!");
 });
