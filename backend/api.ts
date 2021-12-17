@@ -22,11 +22,11 @@ api.use(bodyParser.json());
 
 //Métodos das APIs
 //Métodos do módulo de expenses
-api.get("/expenses", function (req: express.Request, res: express.Response) {
+api.get("/api/expenses/", function (req: express.Request, res: express.Response) {
   res.send(expensesArray.getExpensesArray());
 });
 
-api.put("/expenses", function (req: express.Request, res: express.Response) {
+api.put("/api/expenses/", function (req: express.Request, res: express.Response) {
   let newExp: ExpensesTable = <ExpensesTable>req.body;
   const result = expensesArray.updateExpenses(newExp);
   if (result) {
@@ -36,7 +36,7 @@ api.put("/expenses", function (req: express.Request, res: express.Response) {
   }
 });
 
-api.post("/expenses", function (req: express.Request, res: express.Response) {
+api.post("/api/expenses/", function (req: express.Request, res: express.Response) {
   let newExpenses: ExpensesTable[] = <ExpensesTable[]>req.body;
   const result = expensesArray.insertExpenses(newExpenses);
 
@@ -47,7 +47,7 @@ api.post("/expenses", function (req: express.Request, res: express.Response) {
   }
 });
 
-api.delete("/expenses", function (req: express.Request, res: express.Response) {
+api.delete("/api/expenses/", function (req: express.Request, res: express.Response) {
   let expenseToDelete: number = <number>req.body;
   const result = expensesArray.delete(expenseToDelete);
   if (result) {
