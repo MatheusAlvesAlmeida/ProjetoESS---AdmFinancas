@@ -6,11 +6,7 @@ import { ExpensesTable } from '../../types/expenses';
 import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
-const ELEMENT_DATA: ExpensesTable[] = [
-  {id: 0, percentage: 20, type: 'Alimentação'},
-  {id: 1, percentage: 30, type: 'Aluguel'},
-  {id: 2, percentage: 25, type: 'Treino'}
-];
+const ELEMENT_DATA: ExpensesTable[] = [];
 
 @Component({
   selector: 'app-expenses-form',
@@ -56,7 +52,7 @@ export class ExpensesFormComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result != null){
-        if(this.checkInput(result)){
+        if(this.checkEdit(result)){
           this.inputError();
           return;
         }
@@ -64,6 +60,18 @@ export class ExpensesFormComponent implements OnInit {
         if(this.table) this.table.renderRows();
       }
     });
+  }
+
+  checkEdit(obj: ExpensesTable){
+    let diff = 100;
+    this.dataSource.forEach(element => {
+      if(element.id != obj.id){
+        diff -= element.percentage
+      }
+    });
+    console.log(diff)
+    if(obj.type == "" || obj.percentage <= 0 || obj.percentage > diff) return true;
+    return false;
   }
 
   checkInput(obj: ExpensesTable){
