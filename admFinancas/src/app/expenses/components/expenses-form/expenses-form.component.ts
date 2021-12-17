@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import {MatDialog} from '@angular/material/dialog';
-import { ExpensesTable } from '../../types/expenses';
+import {ExpensesTable} from '../../../../../../common/expenses';
 import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 

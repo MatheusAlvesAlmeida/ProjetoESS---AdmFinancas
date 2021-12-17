@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { ExpensesTable } from '../../types/expenses';
+import {ExpensesTable} from '../../../../../../common/expenses';
 
 @Component({
   selector: 'app-edit-dialog',
