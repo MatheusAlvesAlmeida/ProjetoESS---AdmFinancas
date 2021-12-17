@@ -21,11 +21,13 @@
 
 <mat-card>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+        <!-- Percentage Column -->
         <ng-container matColumnDef="percentage">
             <th mat-header-cell *matHeaderCellDef>Porcentagem dedicada</th>
             <td mat-cell *matCellDef="let element">{{element.percentage}}%</td>
         </ng-container>
 
+        <!-- Type Column -->
         <ng-container matColumnDef="type">
             <th mat-header-cell *matHeaderCellDef>Tipo de gasto</th>
             <td mat-cell *matCellDef="let element">{{element.type}}</td>

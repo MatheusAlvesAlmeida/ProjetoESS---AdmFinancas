@@ -33,4 +33,5 @@ a {
 
 .navbar-button-back {
   color: black;
+  cursor: pointer;
 }
