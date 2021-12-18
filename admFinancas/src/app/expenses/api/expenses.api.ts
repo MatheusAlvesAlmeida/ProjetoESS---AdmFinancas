@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { retry, map } from 'rxjs/operators';
 
 import { ExpensesTable } from '../../../../../common/expenses';

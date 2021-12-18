@@ -26,6 +26,18 @@ export class ExpensesFacade {
     });
   }
 
+  public insertExpenses(expenses: ExpensesTable[]) {
+    this.api.insertExpensesTable(expenses);
+  }
+
+  public updateExpenses(expense: ExpensesTable) {
+    this.api.updateExpense(expense);
+  }
+
+  public deleteExpenses(id: number) {
+    this.api.deleteExpense(id);
+  }
+
   public isLoading() {
     return this.state.isLoading();
   }
