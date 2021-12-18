@@ -42,9 +42,11 @@ export class ExpensesApi {
   }
 
   public deleteExpense(expenseId: number) {
-    const reqBody = { expenseID: expenseId };
     return this.http
-      .delete<any>(this.baseUrl, { headers: this.headers, reqBody })
+      .request<any>('delete', this.baseUrl, {
+        headers: this.headers,
+        body: expenseId,
+      })
       .pipe(
         retry(2),
         map((res) => {

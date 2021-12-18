@@ -27,7 +27,7 @@ export class ExpensesFacade {
   }
 
   public insertExpenses(expenses: ExpensesTable[]) {
-    this.api.insertExpensesTable(expenses);
+    return this.api.insertExpensesTable(expenses);
   }
 
   public updateExpenses(expense: ExpensesTable) {

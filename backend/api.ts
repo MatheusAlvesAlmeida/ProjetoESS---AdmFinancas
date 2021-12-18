@@ -59,7 +59,7 @@ api.post(
 api.delete(
   "/api/expenses/",
   function (req: express.Request, res: express.Response) {
-    let expenseToDelete: number = <number>req.body.expenseID;
+    let expenseToDelete: number = <number>req.body;
     const result = expensesAPI.delete(expenseToDelete);
     if (result) {
       res.send({ success: "O gasto fixo foi removido com sucesso" });
