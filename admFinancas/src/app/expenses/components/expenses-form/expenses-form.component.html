@@ -34,10 +34,10 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-                <button mat-icon-button color="primary" (click)="editData(element.id)">
+                <button mat-icon-button color="primary" (click)="editData(element.id)" [disabled]="!this.actionButtons">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button color="warn" (click)="removeData(element.id)">
+                <button mat-icon-button color="warn" (click)="removeData(element.id)" [disabled]="!this.actionButtons">
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>
@@ -47,3 +47,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 </mat-card>
+
+<button mat-raised-button (click)="confirmInput()" class="demo-button">
+    Confirmar entrada
+</button>

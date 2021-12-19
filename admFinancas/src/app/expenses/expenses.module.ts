@@ -6,6 +6,7 @@ import { ExpensesComponent } from './pages/expenses.component';
 import { ExpensesRoutingModule } from './expenses-routing.module';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 import { SharedModule } from '../shared/shared.module';
+import { expensesInitializerProvider } from './expenses.initializer';
 //Material
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
@@ -17,7 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 
 @NgModule({
-  providers: [ExpensesFacade, ExpensesApi],
+  providers: [ExpensesFacade, ExpensesApi, expensesInitializerProvider],
   declarations: [
     ExpensesComponent,
     ExpensesFormComponent,
@@ -33,7 +34,7 @@ import { EditDialogComponent } from './components/edit-dialog/edit-dialog.compon
     MatCardModule,
     MatDialogModule,
     MatIconModule,
-    SharedModule
+    SharedModule,
   ],
 })
 export class ExpensesModule {}
