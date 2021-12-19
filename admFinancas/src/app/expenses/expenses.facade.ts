@@ -31,7 +31,7 @@ export class ExpensesFacade {
   }
 
   public updateExpenses(expense: ExpensesTable) {
-    this.api.updateExpense(expense);
+    return this.api.updateExpense(expense);
   }
 
   public deleteExpenses(id: number) {

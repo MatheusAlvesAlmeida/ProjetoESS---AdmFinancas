@@ -8,7 +8,7 @@ export class ExpensesAPI {
   }
 
   insertExpenses(newExpenses: ExpensesTable[]) {
-    newExpenses.forEach(element => {
+    newExpenses.forEach((element) => {
       if (this.checkInsert(element)) {
         return null;
       }
@@ -18,15 +18,16 @@ export class ExpensesAPI {
   }
 
   updateExpenses(newObj: ExpensesTable) {
+    console.log(this.expensesArray);
     if (this.checkUpdate(newObj)) {
-      return null;
+      return this.expensesArray;
     }
     this.expensesArray[newObj.id] = newObj;
     return this.expensesArray;
   }
 
-  delete(id: number){
-    this.expensesArray = this.expensesArray.filter(obj => obj.id !== id);
+  delete(id: number) {
+    this.expensesArray = this.expensesArray.filter((obj) => obj.id !== id);
     return this.expensesArray;
   }
 
@@ -35,7 +36,6 @@ export class ExpensesAPI {
     this.expensesArray.forEach((element) => {
       diff -= element.percentage;
     });
-    console.log(diff);
     if (obj.type == "" || obj.percentage <= 0 || obj.percentage > diff)
       return true;
     return false;
@@ -48,7 +48,6 @@ export class ExpensesAPI {
         diff -= element.percentage;
       }
     });
-    console.log(diff);
     if (obj.type == "" || obj.percentage <= 0 || obj.percentage > diff)
       return true;
     return false;

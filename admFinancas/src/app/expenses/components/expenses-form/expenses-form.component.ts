@@ -72,7 +72,12 @@ export class ExpensesFormComponent implements OnInit {
           this.inputError();
           return;
         }
-        this.expensesFacade.updateExpenses(result);
+        const result1 = this.expensesFacade.updateExpenses(result);
+        result1.subscribe((data) => {
+          data.forEach((element) => {
+            this.dataSource.push(element);
+          });
+        });
         if (this.table) this.table.renderRows();
       }
     });

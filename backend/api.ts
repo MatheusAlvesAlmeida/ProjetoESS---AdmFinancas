@@ -33,11 +33,13 @@ api.put(
   "/api/expenses/",
   function (req: express.Request, res: express.Response) {
     let newExp: ExpensesTable = <ExpensesTable>req.body;
+    console.log("atualizando");
     const result = expensesAPI.updateExpenses(newExp);
+    console.log(result);
     if (result) {
-      res.send({ success: "O gasto fixo foi atualizado!" });
+      res.send({ success: "O gasto fixo foi atualizado!", result });
     } else {
-      res.send({ failure: "O gasto fixo não foi atualizado!" });
+      res.send({ failure: "O gasto fixo não foi atualizado!", result });
     }
   }
 );
@@ -47,7 +49,6 @@ api.post(
   function (req: express.Request, res: express.Response) {
     let newExpenses: ExpensesTable[] = <ExpensesTable[]>req.body;
     const result = expensesAPI.insertExpenses(newExpenses);
-    console.log(newExpenses);
     if (result) {
       res.send({ success: "Os gastos fixos foram cadastrados!" });
     } else {

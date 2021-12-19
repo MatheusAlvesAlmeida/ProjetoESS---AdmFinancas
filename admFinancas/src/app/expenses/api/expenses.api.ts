@@ -32,14 +32,15 @@ export class ExpensesApi {
       );
   }
 
-  public updateExpense(expenseToUpdate: ExpensesTable) {
+  public updateExpense(
+    expenseToUpdate: ExpensesTable
+  ): Observable<ExpensesTable[]> {
     return this.http
       .put<any>(this.baseUrl, expenseToUpdate, { headers: this.headers })
       .pipe(
         retry(2),
         map((res) => {
-          if (res.success) return true;
-          return false;
+          return res.result;
         })
       );
   }
