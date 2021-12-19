@@ -23,6 +23,7 @@ export class ExpensesFormComponent implements OnInit {
   enterType: string = '';
 
   actionButtons: boolean = false;
+  confirmButton: boolean = false;
 
   constructor(
     public dialog: MatDialog,
@@ -54,6 +55,8 @@ export class ExpensesFormComponent implements OnInit {
     }
     this.dataSource.push(newElement);
     if (this.table) this.table.renderRows();
+    this.confirmButton = true;
+    this.actionButtons = false;
   }
 
   removeData(id: number) {
@@ -132,5 +135,6 @@ export class ExpensesFormComponent implements OnInit {
     });
     alert('Gastos fixos confirmados com sucesso!');
     this.actionButtons = true;
+    this.confirmButton = false;
   }
 }

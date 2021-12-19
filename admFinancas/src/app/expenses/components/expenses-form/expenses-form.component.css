@@ -23,3 +23,9 @@ td {
 .demo-button+.demo-button {
     margin-left: 8px;
 }
+
+.confirm-button {
+    margin-top: 15px;
+    margin-inline: auto;
+    width: 120px;
+}
