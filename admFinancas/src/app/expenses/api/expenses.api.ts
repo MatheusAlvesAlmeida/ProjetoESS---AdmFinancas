@@ -40,24 +40,21 @@ export class ExpensesApi {
       .pipe(
         retry(2),
         map((res) => {
-          console.log('resultado');
-          console.log(res.result);
           return res.result;
         })
       );
   }
 
-  public deleteExpense(expenseId: number) {
+  public deleteExpense(expenseId: number): Observable<ExpensesTable[]> {
     return this.http
-      .request<any>('delete', this.baseUrl, {
+      .delete<any>(this.baseUrl, {
         headers: this.headers,
-        body: expenseId,
+        body: { expense: expenseId },
       })
       .pipe(
         retry(2),
         map((res) => {
-          if (res.success) return true;
-          return false;
+          return res.result;
         })
       );
   }

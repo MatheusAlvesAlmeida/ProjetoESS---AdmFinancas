@@ -57,8 +57,14 @@ export class ExpensesFormComponent implements OnInit {
   }
 
   removeData(id: number) {
-    this.expensesFacade.deleteExpenses(id);
-    if (this.table) this.table.renderRows();
+    const result = this.expensesFacade.deleteExpenses(id);
+    this.dataSource = [];
+    result.subscribe((data) => {
+      data.forEach((element) => {
+        this.dataSource.push(element);
+        if (this.table) this.table.renderRows();
+      });
+    });
   }
 
   editData(id: number) {

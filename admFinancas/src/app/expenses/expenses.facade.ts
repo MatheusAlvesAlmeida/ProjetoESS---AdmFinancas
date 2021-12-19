@@ -35,7 +35,7 @@ export class ExpensesFacade {
   }
 
   public deleteExpenses(id: number) {
-    this.api.deleteExpense(id);
+    return this.api.deleteExpense(id);
   }
 
   public isLoading() {

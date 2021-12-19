@@ -33,9 +33,7 @@ api.put(
   "/api/expenses/",
   function (req: express.Request, res: express.Response) {
     let newExp: ExpensesTable = <ExpensesTable>req.body;
-    console.log("atualizando");
     const result = expensesAPI.updateExpenses(newExp);
-    console.log(result);
     if (result) {
       res.send({ success: "O gasto fixo foi atualizado!", result });
     } else {
@@ -60,12 +58,12 @@ api.post(
 api.delete(
   "/api/expenses/",
   function (req: express.Request, res: express.Response) {
-    let expenseToDelete: number = <number>req.body;
+    let expenseToDelete: number = <number>req.body.expense;
     const result = expensesAPI.delete(expenseToDelete);
     if (result) {
-      res.send({ success: "O gasto fixo foi removido com sucesso" });
+      res.send({ success: "O gasto fixo foi removido com sucesso", result });
     } else {
-      res.send({ failure: "O gasto fixo não foi removido" });
+      res.send({ failure: "O gasto fixo não foi removido", result });
     }
   }
 );
