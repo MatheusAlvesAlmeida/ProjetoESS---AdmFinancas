@@ -107,17 +107,11 @@ export class ExpensesFormComponent implements OnInit {
   }
 
   confirmInput() {
-    if (this.expensesFacade.insertExpenses(this.dataSource)) {
-      alert('Adicionado com sucesso!');
-      this.expenses.subscribe({
-        next: (data) => {
-          data.forEach((element) => {
-            console.log(element);
-          });
-        },
+    const result = this.expensesFacade.insertExpenses(this.dataSource);
+    result.subscribe((data) => {
+      data.forEach((element) => {
+        this.dataSource.push(element);
       });
-    } else {
-      alert('erro!');
-    }
+    });
   }
 }

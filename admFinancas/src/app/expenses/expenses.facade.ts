@@ -13,7 +13,7 @@ export class ExpensesFacade {
   ) {}
 
   public getExpensesTable() {
-    return this.state.getExpensesTable();
+    return this.api.getExpensesTable();
   }
 
   public fetchExpensesTable() {

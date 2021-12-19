@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { retry, map } from 'rxjs/operators';
 
 import { ExpensesTable } from '../../../../../common/expenses';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ExpensesApi {
@@ -17,14 +18,16 @@ export class ExpensesApi {
       .pipe(retry(2));
   }
 
-  public insertExpensesTable(expensesToInsert: ExpensesTable[]) {
+  public insertExpensesTable(
+    expensesToInsert: ExpensesTable[]
+  ): Observable<ExpensesTable[]> {
     return this.http
       .post<any>(this.baseUrl, expensesToInsert, { headers: this.headers })
       .pipe(
         retry(2),
         map((res) => {
-          if (res.success) return true;
-          return false;
+          if (res.success) return expensesToInsert;
+          return [];
         })
       );
   }

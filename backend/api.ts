@@ -47,7 +47,7 @@ api.post(
   function (req: express.Request, res: express.Response) {
     let newExpenses: ExpensesTable[] = <ExpensesTable[]>req.body;
     const result = expensesAPI.insertExpenses(newExpenses);
-
+    console.log(newExpenses);
     if (result) {
       res.send({ success: "Os gastos fixos foram cadastrados!" });
     } else {
