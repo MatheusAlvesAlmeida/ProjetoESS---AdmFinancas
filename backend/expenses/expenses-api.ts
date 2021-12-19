@@ -18,7 +18,6 @@ export class ExpensesAPI {
   }
 
   updateExpenses(newObj: ExpensesTable) {
-    console.log(this.expensesArray);
     if (this.checkUpdate(newObj)) {
       return this.expensesArray;
     }

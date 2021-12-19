@@ -40,6 +40,8 @@ export class ExpensesApi {
       .pipe(
         retry(2),
         map((res) => {
+          console.log('resultado');
+          console.log(res.result);
           return res.result;
         })
       );
