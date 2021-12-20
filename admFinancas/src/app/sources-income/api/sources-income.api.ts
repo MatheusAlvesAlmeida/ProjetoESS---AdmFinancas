@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { retry, map } from 'rxjs/operators';
 
 import { SourcesIncomeTable } from '../../../../../common/sources-income';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class SourcesIncomeApi {
@@ -17,41 +18,43 @@ export class SourcesIncomeApi {
       .pipe(retry(2));
   }
 
-  public insertSourcesIncomeTable(sourcesIncomeToInsert: SourcesIncomeTable[]) {
+  public insertSourcesIncomeTable(
+    sourcesIncomeToInsert: SourcesIncomeTable[]
+  ): Observable<SourcesIncomeTable[]> {
     return this.http
       .post<any>(this.baseUrl, sourcesIncomeToInsert, { headers: this.headers })
       .pipe(
         retry(2),
         map((res) => {
-          if (res.success) return true;
-          return false;
+          if (res.success) return sourcesIncomeToInsert;
+          return [];
         })
       );
   }
 
-  public updateExpense(sourcesIncomeToUpdate: SourcesIncomeTable) {
+  public updateSourceIncome(
+    sourceIncomeToUpdate: SourcesIncomeTable
+  ): Observable<SourcesIncomeTable[]> {
     return this.http
-      .put<any>(this.baseUrl, sourcesIncomeToUpdate, { headers: this.headers })
+      .put<any>(this.baseUrl, sourceIncomeToUpdate, { headers: this.headers })
       .pipe(
         retry(2),
         map((res) => {
-          if (res.success) return true;
-          return false;
+          return res.result;
         })
       );
   }
 
-  public deleteExpense(sourceIncomeId: number) {
+  public deleteSourceIncome(sourceIncomeId: number): Observable<SourcesIncomeTable[]> {
     return this.http
-      .request<any>('delete', this.baseUrl, {
+      .delete<any>(this.baseUrl, {
         headers: this.headers,
-        body: sourceIncomeId,
+        body: { sourceIncome: sourceIncomeId },
       })
       .pipe(
         retry(2),
         map((res) => {
-          if (res.success) return true;
-          return false;
+          return res.result;
         })
       );
   }
