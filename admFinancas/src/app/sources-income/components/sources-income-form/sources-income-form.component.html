@@ -1,36 +1,43 @@
-<mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Salário</mat-label>
-    <input matInput disabled value="Salário">
-</mat-form-field>
-
 <mat-card>
     <mat-form-field appearance="fill">
-        <mat-label>Tipo de gasto</mat-label>
-        <input matInput placeholder="Ex. Aluguel" [(ngModel)]="enterType">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Porcentagem dedicada</mat-label>
-        <input matInput maxlength="3" placeholder="Ex. 30" [(ngModel)]="enterPercentage" type="number">
+        <mat-label>Salário</mat-label>
+        <input matInput maxlength="3" placeholder="Ex. 4000" [(ngModel)]="enterSalary" type="number">
     </mat-form-field>
     <div class="demo-button-container">
         <button mat-raised-button (click)="addData()" class="demo-button">
-            Adicionar gasto
+            Adicionar salário
+        </button>
+    </div>
+</mat-card>
+
+<mat-card>
+    <mat-form-field appearance="fill">
+        <mat-label>Tipo fonte de renda</mat-label>
+        <input matInput placeholder="Ex. Freelance" [(ngModel)]="enterType">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Valor</mat-label>
+        <input matInput maxlength="3" placeholder="Ex. 2000" [(ngModel)]="enterSourceIncome" type="number">
+    </mat-form-field>
+    <div class="demo-button-container">
+        <button mat-raised-button (click)="addData()" class="demo-button">
+            Adicionar fonte de renda
         </button>
     </div>
 </mat-card>
 
 <mat-card>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
-        <!-- Percentage Column -->
-        <ng-container matColumnDef="percentage">
-            <th mat-header-cell *matHeaderCellDef>Porcentagem dedicada</th>
-            <td mat-cell *matCellDef="let element">{{element.percentage}}%</td>
-        </ng-container>
-
         <!-- Type Column -->
         <ng-container matColumnDef="type">
-            <th mat-header-cell *matHeaderCellDef>Tipo de gasto</th>
-            <td mat-cell *matCellDef="let element">{{element.type}}</td>
+            <th mat-header-cell *matHeaderCellDef>Fonte de renda</th>
+            <td mat-cell *matCellDef="let element">{{ element.type }}%</td>
+        </ng-container>
+
+        <!-- Amount Column -->
+        <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>Valor</th>
+            <td mat-cell *matCellDef="let element">{{element.amount}}</td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
