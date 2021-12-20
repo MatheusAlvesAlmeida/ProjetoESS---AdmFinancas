@@ -6,9 +6,14 @@ const cron = require("node-cron");
 import { ExpensesTable } from "../common/expenses";
 import { ExpensesAPI } from "./expenses/expenses-api";
 
+import { SourcesIncomeTable } from "../common/sources-income";
+import { SourcesIncomeAPI } from "./sources-income/sources-income-api";
+
 var api = express();
 
 var expensesAPI: ExpensesAPI = new ExpensesAPI();
+
+var sourcesIncomeAPI: SourcesIncomeAPI = new SourcesIncomeAPI();
 
 var allowCrossDomain = function (req: any, res: any, next: any) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -65,6 +70,46 @@ api.delete(
       res.send({ success: "O gasto fixo foi removido com sucesso" });
     } else {
       res.send({ failure: "O gasto fixo não foi removido" });
+    }
+  }
+);
+
+api.put(
+  "/api/sources-income/",
+  function (req: express.Request, res: express.Response) {
+    let newSourceIncome: SourcesIncomeTable = <SourcesIncomeTable>req.body;
+    const result = sourcesIncomeAPI.updateSourcesIncome(newSourceIncome);
+    if (result) {
+      res.send({ success: "A fonte de renda foi atualizada!" });
+    } else {
+      res.send({ failure: "A fonte de renda não foi atualizado!" });
+    }
+  }
+);
+
+api.post(
+  "/api/sources-income/",
+  function (req: express.Request, res: express.Response) {
+    let newSourceIncome: SourcesIncomeTable[] = <SourcesIncomeTable[]>req.body;
+    const result = sourcesIncomeAPI.insertSourcesIncome(newSourceIncome);
+
+    if (result) {
+      res.send({ success: "As fontes de renda foram cadastradas!" });
+    } else {
+      res.send({ failure: "As fontes de renda não foram cadastradas!" });
+    }
+  }
+);
+
+api.delete(
+  "/api/sources-income/",
+  function (req: express.Request, res: express.Response) {
+    let sourcesIncomeToDelete: number = <number>req.body.expenseID;
+    const result = sourcesIncomeAPI.delete(sourcesIncomeToDelete);
+    if (result) {
+      res.send({ success: "A fonte de renda foi removida com sucesso" });
+    } else {
+      res.send({ failure: "A fonte de renda não foi removida" });
     }
   }
 );
