@@ -26,7 +26,11 @@ export class SourcesIncomeApi {
       .pipe(
         retry(2),
         map((res) => {
-          if (res.success) return sourcesIncomeToInsert;
+          if (res.success){
+            const jsonAux = JSON.stringify(sourcesIncomeToInsert);
+            localStorage.setItem("sourcesIncome", jsonAux)
+            return sourcesIncomeToInsert;
+          } 
           return [];
         })
       );

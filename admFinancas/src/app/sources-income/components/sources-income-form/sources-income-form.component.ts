@@ -30,7 +30,14 @@ export class SourcesIncomeFormComponent implements OnInit {
     this.sourcesIncome = this.sourcesIncomeFacade.getSourcesIncomeTable();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const storage = localStorage.getItem("sourcesIncome");
+    if (storage) {
+      this.dataSource = JSON.parse(storage);
+      const isSalary = this.isSalary()
+      if (isSalary) this.confirmButton = true;
+    }
+  }
 
   displayedColumns: string[] = ['type', 'amount', 'actions'];
   dataSource : SourcesIncomeTable[] = [];
@@ -47,25 +54,45 @@ export class SourcesIncomeFormComponent implements OnInit {
     if (this.table) this.table.renderRows();
     this.enterType = '';
     this.enterAmount = 0;
-    this.confirmButton = true;
+  }
+
+  isSalary () {
+    let isSalary = false;
+    if (this.dataSource.length) {
+      this.dataSource.forEach(item => {
+        if (item.type == "Salário") isSalary = true;
+      })
+    }
+    return isSalary;
   }
 
   addSalary() {
-    const newElement = {
-      id: this.dataSource.length,
-      type: 'Salário',
-      amount: this.enterSalary,
-    };
-    this.dataSource.push(newElement);
-    if (this.table) this.table.renderRows();
-    this.enterSalary = 0;
-    this.confirmButton = true;
+    const isSalary = this.isSalary();
+    if (!isSalary) {
+      const newElement = {
+        id: this.dataSource.length,
+        type: 'Salário',
+        amount: this.enterSalary,
+      };
+      this.dataSource.push(newElement);
+      if (this.table) this.table.renderRows();
+      this.enterSalary = 0;
+      this.confirmButton = true;
+    } else {
+      alert("Não é possível registar mais de um salário")
+    }
+    
   }
 
   removeData(id: number) {
     this.dataSource = this.dataSource.filter((obj) => obj.id !== id);
     if (this.table) this.table.renderRows();
-    if(this.dataSource.length == 0) this.confirmButton = false;
+    if(this.dataSource.length == 0) {
+      this.confirmButton = false;
+    } else {
+      const isSalary = this.isSalary();
+      if (!isSalary) this.confirmButton = false;
+    }
   }
 
   editData(id: number) {
