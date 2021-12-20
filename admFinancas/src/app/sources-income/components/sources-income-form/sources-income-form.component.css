@@ -1,11 +1,9 @@
-.example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+.card-source-income {
+    margin-bottom: 1rem;
 }
 
-.example-full-width {
-    width: 100%;
+.form-field {
+    margin-right: 1rem;
 }
 
 td {
@@ -22,4 +20,8 @@ td {
 
 .demo-button+.demo-button {
     margin-left: 8px;
+}
+
+.confirm-button {
+    margin-top: 1rem;
 }
