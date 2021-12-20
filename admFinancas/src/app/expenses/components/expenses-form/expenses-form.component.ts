@@ -22,6 +22,9 @@ export class ExpensesFormComponent implements OnInit {
   enterPercentage: number = 0;
   enterType: string = '';
 
+  actionButtons: boolean = false;
+  confirmButton: boolean = false;
+
   constructor(
     public dialog: MatDialog,
     private readonly expensesFacade: ExpensesFacade
@@ -30,7 +33,10 @@ export class ExpensesFormComponent implements OnInit {
     this.expenses = this.expensesFacade.getExpensesTable();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dataSource = [];
+    this.actionButtons = false;
+  }
 
   displayedColumns: string[] = ['percentage', 'type', 'actions'];
   dataSource = [...ELEMENT_DATA];
@@ -49,11 +55,19 @@ export class ExpensesFormComponent implements OnInit {
     }
     this.dataSource.push(newElement);
     if (this.table) this.table.renderRows();
+    this.confirmButton = true;
+    this.actionButtons = false;
   }
 
   removeData(id: number) {
-    this.expensesFacade.deleteExpenses(id);
-    if (this.table) this.table.renderRows();
+    const result = this.expensesFacade.deleteExpenses(id);
+    this.dataSource = [];
+    result.subscribe((data) => {
+      data.forEach((element) => {
+        this.dataSource.push(element);
+        if (this.table) this.table.renderRows();
+      });
+    });
   }
 
   editData(id: number) {
@@ -72,8 +86,14 @@ export class ExpensesFormComponent implements OnInit {
           this.inputError();
           return;
         }
-        this.expensesFacade.updateExpenses(result);
-        if (this.table) this.table.renderRows();
+        const result1 = this.expensesFacade.updateExpenses(result);
+        this.dataSource = [];
+        result1.subscribe((data) => {
+          data.forEach((element) => {
+            this.dataSource.push(element);
+            if (this.table) this.table.renderRows();
+          });
+        });
       }
     });
   }
@@ -85,7 +105,6 @@ export class ExpensesFormComponent implements OnInit {
         diff -= element.percentage;
       }
     });
-    console.log(diff);
     if (obj.type == '' || obj.percentage <= 0 || obj.percentage > diff)
       return true;
     return false;
@@ -96,7 +115,6 @@ export class ExpensesFormComponent implements OnInit {
     this.dataSource.forEach((element) => {
       diff -= element.percentage;
     });
-    console.log(diff);
     if (obj.type == '' || obj.percentage <= 0 || obj.percentage > diff)
       return true;
     return false;
@@ -107,6 +125,16 @@ export class ExpensesFormComponent implements OnInit {
   }
 
   confirmInput() {
-    this.expensesFacade.insertExpenses(this.dataSource);
+    const result = this.expensesFacade.insertExpenses(this.dataSource);
+    this.dataSource = [];
+    result.subscribe((data) => {
+      data.forEach((element) => {
+        this.dataSource.push(element);
+        if (this.table) this.table.renderRows();
+      });
+    });
+    alert('Gastos fixos confirmados com sucesso!');
+    this.actionButtons = true;
+    this.confirmButton = false;
   }
 }

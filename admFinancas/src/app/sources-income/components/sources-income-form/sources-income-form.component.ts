@@ -61,6 +61,16 @@ export class SourcesIncomeFormComponent implements OnInit {
     });
   }
 
+  checkInput(obj: SourcesIncomeTable) {
+    let diff = 100;
+    this.dataSource.forEach((element) => {
+      diff -= element.percentage;
+    });
+    if (obj.type == '' || obj.percentage <= 0 || obj.percentage > diff)
+      return true;
+    return false;
+  }
+
   inputError() {
     this.dialog.open(ErrorDialogComponent);
   }

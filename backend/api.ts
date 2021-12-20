@@ -40,9 +40,9 @@ api.put(
     let newExp: ExpensesTable = <ExpensesTable>req.body;
     const result = expensesAPI.updateExpenses(newExp);
     if (result) {
-      res.send({ success: "O gasto fixo foi atualizado!" });
+      res.send({ success: "O gasto fixo foi atualizado!", result });
     } else {
-      res.send({ failure: "O gasto fixo não foi atualizado!" });
+      res.send({ failure: "O gasto fixo não foi atualizado!", result });
     }
   }
 );
@@ -52,7 +52,6 @@ api.post(
   function (req: express.Request, res: express.Response) {
     let newExpenses: ExpensesTable[] = <ExpensesTable[]>req.body;
     const result = expensesAPI.insertExpenses(newExpenses);
-
     if (result) {
       res.send({ success: "Os gastos fixos foram cadastrados!" });
     } else {
@@ -64,12 +63,12 @@ api.post(
 api.delete(
   "/api/expenses/",
   function (req: express.Request, res: express.Response) {
-    let expenseToDelete: number = <number>req.body.expenseID;
+    let expenseToDelete: number = <number>req.body.expense;
     const result = expensesAPI.delete(expenseToDelete);
     if (result) {
-      res.send({ success: "O gasto fixo foi removido com sucesso" });
+      res.send({ success: "O gasto fixo foi removido com sucesso", result });
     } else {
-      res.send({ failure: "O gasto fixo não foi removido" });
+      res.send({ failure: "O gasto fixo não foi removido", result });
     }
   }
 );

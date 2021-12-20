@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { retry, map } from 'rxjs/operators';
 
 import { ExpensesTable } from '../../../../../common/expenses';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ExpensesApi {
@@ -17,39 +18,43 @@ export class ExpensesApi {
       .pipe(retry(2));
   }
 
-  public insertExpensesTable(expensesToInsert: ExpensesTable[]) {
+  public insertExpensesTable(
+    expensesToInsert: ExpensesTable[]
+  ): Observable<ExpensesTable[]> {
     return this.http
       .post<any>(this.baseUrl, expensesToInsert, { headers: this.headers })
       .pipe(
         retry(2),
         map((res) => {
-          if (res.success) return true;
-          return false;
+          if (res.success) return expensesToInsert;
+          return [];
         })
       );
   }
 
-  public updateExpense(expenseToUpdate: ExpensesTable) {
+  public updateExpense(
+    expenseToUpdate: ExpensesTable
+  ): Observable<ExpensesTable[]> {
     return this.http
       .put<any>(this.baseUrl, expenseToUpdate, { headers: this.headers })
       .pipe(
         retry(2),
         map((res) => {
-          if (res.success) return true;
-          return false;
+          return res.result;
         })
       );
   }
 
-  public deleteExpense(expenseId: number) {
-    const reqBody = { expenseID: expenseId };
+  public deleteExpense(expenseId: number): Observable<ExpensesTable[]> {
     return this.http
-      .delete<any>(this.baseUrl, { headers: this.headers, reqBody })
+      .delete<any>(this.baseUrl, {
+        headers: this.headers,
+        body: { expense: expenseId },
+      })
       .pipe(
         retry(2),
         map((res) => {
-          if (res.success) return true;
-          return false;
+          return res.result;
         })
       );
   }

@@ -13,7 +13,7 @@ export class ExpensesFacade {
   ) {}
 
   public getExpensesTable() {
-    return this.state.getExpensesTable();
+    return this.api.getExpensesTable();
   }
 
   public fetchExpensesTable() {
@@ -27,15 +27,15 @@ export class ExpensesFacade {
   }
 
   public insertExpenses(expenses: ExpensesTable[]) {
-    this.api.insertExpensesTable(expenses);
+    return this.api.insertExpensesTable(expenses);
   }
 
   public updateExpenses(expense: ExpensesTable) {
-    this.api.updateExpense(expense);
+    return this.api.updateExpense(expense);
   }
 
   public deleteExpenses(id: number) {
-    this.api.deleteExpense(id);
+    return this.api.deleteExpense(id);
   }
 
   public isLoading() {
