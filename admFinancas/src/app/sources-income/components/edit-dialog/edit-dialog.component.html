@@ -1,14 +1,14 @@
-<h1 mat-dialog-title>Editar gasto fixo</h1>
+<h1 mat-dialog-title>Editar fonte de renda</h1>
 <div mat-dialog-content>
-    <p>Qual é o título do novo tipo de gasto?</p>
+    <p>Qual é o tipo de fonte de renda?</p>
     <mat-form-field appearance="fill">
-        <mat-label>Tipo de gasto</mat-label>
+        <mat-label>Tipo de fonte de renda</mat-label>
         <input matInput [(ngModel)]="data.type">
     </mat-form-field>
-    <p>Qual é a nova porcentagem do título de gasto?</p>
+    <p>Qual é o novo valor para a fonte de renda?</p>
     <mat-form-field appearance="fill">
-        <mat-label>Porcentagem</mat-label>
-        <input matInput [(ngModel)]="data.percentage">
+        <mat-label>Valor</mat-label>
+        <input matInput [(ngModel)]="data.amount">
     </mat-form-field>
 </div>
 <div mat-dialog-actions>
