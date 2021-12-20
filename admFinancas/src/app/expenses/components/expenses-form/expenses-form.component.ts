@@ -24,6 +24,7 @@ export class ExpensesFormComponent implements OnInit {
 
   actionButtons: boolean = false;
   confirmButton: boolean = false;
+  salary: number = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -34,8 +35,14 @@ export class ExpensesFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataSource = [];
-    this.actionButtons = false;
+    const sourcesIncomeStorage = localStorage.getItem("sourcesIncome");
+    if (sourcesIncomeStorage) {
+      let auxStorage = JSON.parse(sourcesIncomeStorage);
+      const sourceIncome = auxStorage.filter((item : any) => {
+        return item.type == "Salário"
+      })
+      this.salary = sourceIncome[0].amount;
+    }
   }
 
   displayedColumns: string[] = ['percentage', 'type', 'actions'];

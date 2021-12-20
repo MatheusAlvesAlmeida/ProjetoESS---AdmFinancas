@@ -1,10 +1,10 @@
 <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Salário</mat-label>
-    <input matInput disabled value="Salário">
+    <input matInput disabled [value]="this.salary">
 </mat-form-field>
 
 <mat-card>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="form-field">
         <mat-label>Tipo de gasto</mat-label>
         <input matInput placeholder="Ex. Aluguel" [(ngModel)]="enterType">
     </mat-form-field>
@@ -47,7 +47,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <div class="confirm-button">
-        <button mat-raised-button (click)="confirmInput()" class="demo-button" style="background-color: #00f900;" [disabled]="!this.confirmButton">
+        <button mat-raised-button color="primary" (click)="confirmInput()" class="demo-button" [disabled]="!this.confirmButton">
             Confirmar entrada
         </button>
     </div>
