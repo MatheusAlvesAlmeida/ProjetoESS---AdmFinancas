@@ -39,6 +39,7 @@ export class SourcesIncomeFormComponent implements OnInit {
     newData.subscribe((data) => {
       data.forEach((element) => {
         this.dataSource.push(element);
+        this.actionButtons = true;
         if (this.table) this.table.renderRows();
       });
     });
@@ -98,9 +99,7 @@ export class SourcesIncomeFormComponent implements OnInit {
   }
 
   removeData(id: number) {
-    console.log('num', id)
     const result = this.sourcesIncomeFacade.deleteSourcesIncome(id);
-    console.log('res', result)
     this.dataSource = [];
     result.subscribe((data) => {
       data.forEach((element) => {
@@ -108,6 +107,7 @@ export class SourcesIncomeFormComponent implements OnInit {
         if (this.table) this.table.renderRows();
       });
     });
+    alert('Fonte de renda deletada com sucesso!');
   }
 
   editData(id: number) {
