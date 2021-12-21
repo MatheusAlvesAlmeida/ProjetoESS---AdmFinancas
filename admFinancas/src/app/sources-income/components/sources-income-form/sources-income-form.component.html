@@ -77,10 +77,21 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="primary" (click)="editData(element.id)" [disabled]="!this.actionButtons">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="editData(element.id)"
+          [disabled]="!this.actionButtons"
+        >
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" (click)="removeData(element.id)" [disabled]="!this.actionButtons" name="deleteButton">
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="removeData(element.id)"
+          [disabled]="!this.actionButtons || element.type == 'Salário'"
+          name="deleteButton"
+        >
           <mat-icon>delete</mat-icon>
         </button>
       </td>
