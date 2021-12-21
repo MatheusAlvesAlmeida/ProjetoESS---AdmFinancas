@@ -27,6 +27,11 @@ export class ExpensesAPI {
 
   delete(id: number) {
     this.expensesArray = this.expensesArray.filter((obj) => obj.id !== id);
+    let idNovo = 0;
+    this.expensesArray.forEach((element) => {
+      element.id = idNovo;
+      idNovo += 1;
+    });
     return this.expensesArray;
   }
 

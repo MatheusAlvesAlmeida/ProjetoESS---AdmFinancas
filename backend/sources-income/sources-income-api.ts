@@ -17,8 +17,15 @@ export class SourcesIncomeAPI {
     return this.sourcesIncomeArray;
   }
 
-  delete(id: number){
-    this.sourcesIncomeArray = this.sourcesIncomeArray.filter(obj => obj.id !== id);
+  delete(id: number) {
+    this.sourcesIncomeArray = this.sourcesIncomeArray.filter(
+      (obj) => obj.id !== id
+    );
+    let idNovo = 0;
+    this.sourcesIncomeArray.forEach((element) => {
+      element.id = idNovo;
+      idNovo += 1;
+    });
     return this.sourcesIncomeArray;
   }
 }
