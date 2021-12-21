@@ -24,7 +24,7 @@ export class ExpensesFormComponent implements OnInit {
 
   actionButtons: boolean = false;
   confirmButton: boolean = false;
-  salary: number = 0;
+  salary : number = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -35,6 +35,15 @@ export class ExpensesFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const sourcesIncomeStorage = localStorage.getItem("sourcesIncome");
+    if (sourcesIncomeStorage) {
+      let auxStorage = JSON.parse(sourcesIncomeStorage);
+      const sourceIncome = auxStorage.filter((item : any) => {
+        return item.type == "Salário"
+      })
+      this.salary = sourceIncome[0].amount;
+    }
+
     this.expensesFacade.fetchExpensesTable();
     const newData = this.expensesFacade.getExpensesTable();
     newData.subscribe((data) => {
@@ -103,9 +112,9 @@ export class ExpensesFormComponent implements OnInit {
             if (this.table) this.table.renderRows();
           });
         });
+        alert('Gasto fixo editado com sucesso!');
       }
     });
-    alert('Gasto fixo editado com sucesso!');
   }
 
   checkEdit(obj: ExpensesTable) {
