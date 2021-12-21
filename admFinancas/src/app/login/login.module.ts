@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { LoginApi } from './api/login.api';
-import { LoginFacade } from './login.facade';
 import { LoginComponent } from './pages/login.component';
 import { LoginRoutingModule } from './login-routing.module';
 //Material
@@ -13,7 +11,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  providers: [LoginFacade, LoginApi],
   declarations: [
     LoginComponent
   ],

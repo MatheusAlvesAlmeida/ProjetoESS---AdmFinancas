@@ -16,8 +16,10 @@ export class LoginComponent implements OnInit {
   constructor(public firebaseService: FirebaseService, private router: Router) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('user') !== null) {
+    const userStorage = localStorage.getItem("user");
+    if (userStorage) {
       this.isSignedIn = true;
+      this.router.navigate(['/home'])
     } else {
       this.isSignedIn = false;
     }

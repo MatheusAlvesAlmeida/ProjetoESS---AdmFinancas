@@ -1,37 +1,22 @@
 <div class="container">
-  <mat-card class="card">
-    <mat-card-title>Bem vindo(a)!</mat-card-title>
-    <mat-card-subtitle>Sistema de controle financeiro</mat-card-subtitle>
-    <div class="form-field">
-      <mat-form-field appearance="fill">
-        <mat-label>Email</mat-label>
-        <input
-          [(ngModel)]="email"
-          type="email"
-          matInput
-          placeholder="email@email.com"
-        />
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Senha</mat-label>
-        <input
-          [(ngModel)]="password"
-          type="password"
-          matInput
-          placeholder="insira sua senha"
-        />
-      </mat-form-field>
-    </div>
-    <mat-card-actions>
-      <button mat-button><a routerLink="/signin">CADASTRAR</a></button>
-      <button
-        (click)="onSignIn(email, password)"
-        mat-button
-        mat-raised-button
-        color="primary"
-      >
+    <mat-card class="card">
+        <mat-card-title>Bem vindo(a)!</mat-card-title>
+        <mat-card-subtitle>Sistema de controle financeiro</mat-card-subtitle>
+        <div class="form-field">
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input [(ngModel)]="email" type="email" matInput placeholder="email@email.com" name="emailInput" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Senha</mat-label>
+                <input [(ngModel)]="password" type="password" matInput placeholder="insira sua senha" name="passwordInput" />
+            </mat-form-field>
+        </div>
+        <mat-card-actions>
+            <button mat-button><a routerLink="/signin">CADASTRAR</a></button>
+            <button (click)="onSignIn(email, password)" mat-button mat-raised-button color="primary" name="submitLogin">
         ENTRAR
       </button>
-    </mat-card-actions>
-  </mat-card>
+        </mat-card-actions>
+    </mat-card>
 </div>

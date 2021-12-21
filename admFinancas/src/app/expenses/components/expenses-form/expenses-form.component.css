@@ -8,6 +8,10 @@
     width: 100%;
 }
 
+.form-field {
+    margin-right: 1rem;
+}
+
 td {
     padding-right: 8px;
 }
@@ -25,7 +29,9 @@ td {
 }
 
 .confirm-button {
-    margin-top: 15px;
-    margin-inline: auto;
-    width: 120px;
+    margin-top: 1rem;
+}
+
+.card-expense-type {
+    margin-bottom: 1rem;
 }

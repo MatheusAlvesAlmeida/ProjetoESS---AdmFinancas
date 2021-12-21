@@ -73,16 +73,23 @@ api.delete(
   }
 );
 
-//Métodos do módulo de expenses
+//Métodos do módulo de sources-income
+api.get(
+  "/api/sources-income/",
+  function (req: express.Request, res: express.Response) {
+    res.send(sourcesIncomeAPI.getsourcesIncomeArray());
+  }
+);
+
 api.put(
   "/api/sources-income/",
   function (req: express.Request, res: express.Response) {
     let newSourceIncome: SourcesIncomeTable = <SourcesIncomeTable>req.body;
     const result = sourcesIncomeAPI.updateSourcesIncome(newSourceIncome);
     if (result) {
-      res.send({ success: "A fonte de renda foi atualizada!" });
+      res.send({ success: "A fonte de renda foi atualizada!", result });
     } else {
-      res.send({ failure: "A fonte de renda não foi atualizado!" });
+      res.send({ failure: "A fonte de renda não foi atualizado!", result });
     }
   }
 );
@@ -104,12 +111,12 @@ api.post(
 api.delete(
   "/api/sources-income/",
   function (req: express.Request, res: express.Response) {
-    let sourcesIncomeToDelete: number = <number>req.body.expenseID;
+    let sourcesIncomeToDelete: number = <number>req.body.sourceIncome;
     const result = sourcesIncomeAPI.delete(sourcesIncomeToDelete);
     if (result) {
-      res.send({ success: "A fonte de renda foi removida com sucesso" });
+      res.send({ success: "A fonte de renda foi removida com sucesso", result });
     } else {
-      res.send({ failure: "A fonte de renda não foi removida" });
+      res.send({ failure: "A fonte de renda não foi removida", result });
     }
   }
 );
