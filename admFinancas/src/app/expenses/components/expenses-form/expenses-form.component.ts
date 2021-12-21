@@ -34,8 +34,15 @@ export class ExpensesFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataSource = [];
-    this.actionButtons = false;
+    this.expensesFacade.fetchExpensesTable();
+    const newData = this.expensesFacade.getExpensesTable();
+    newData.subscribe((data) => {
+      data.forEach((element) => {
+        this.dataSource.push(element);
+        this.actionButtons = true;
+        if (this.table) this.table.renderRows();
+      });
+    });
   }
 
   displayedColumns: string[] = ['percentage', 'type', 'actions'];
@@ -68,6 +75,7 @@ export class ExpensesFormComponent implements OnInit {
         if (this.table) this.table.renderRows();
       });
     });
+    alert('Gasto fixo deletado com sucesso!');
   }
 
   editData(id: number) {
@@ -96,6 +104,7 @@ export class ExpensesFormComponent implements OnInit {
         });
       }
     });
+    alert('Gasto fixo editado com sucesso!');
   }
 
   checkEdit(obj: ExpensesTable) {
