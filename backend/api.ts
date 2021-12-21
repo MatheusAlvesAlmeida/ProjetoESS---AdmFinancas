@@ -87,9 +87,9 @@ api.put(
     let newSourceIncome: SourcesIncomeTable = <SourcesIncomeTable>req.body;
     const result = sourcesIncomeAPI.updateSourcesIncome(newSourceIncome);
     if (result) {
-      res.send({ success: "A fonte de renda foi atualizada!" });
+      res.send({ success: "A fonte de renda foi atualizada!", result });
     } else {
-      res.send({ failure: "A fonte de renda não foi atualizado!" });
+      res.send({ failure: "A fonte de renda não foi atualizado!", result });
     }
   }
 );
