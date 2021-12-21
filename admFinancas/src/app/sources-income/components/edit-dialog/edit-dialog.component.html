@@ -3,7 +3,7 @@
     <p>Qual é o tipo de fonte de renda?</p>
     <mat-form-field appearance="fill">
         <mat-label>Tipo de fonte de renda</mat-label>
-        <input matInput [(ngModel)]="data.type">
+        <input matInput [(ngModel)]="data.type" [disabled]="data.type == 'Salário'">
     </mat-form-field>
     <p>Qual é o novo valor para a fonte de renda?</p>
     <mat-form-field appearance="fill">
