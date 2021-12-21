@@ -1,5 +1,3 @@
-# ProjetoESS---AdmFinancas
-Repositório que contém o projeto realizado na disciplina de Engenharia de Software no período 2021.1
 <h3 align="center">
     <b>Projeto da disciplina de Engenharia de Software</b>  
     <br><br>
