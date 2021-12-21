@@ -26,11 +26,9 @@ export class SourcesIncomeApi {
       .pipe(
         retry(2),
         map((res) => {
-          if (res.success){
-            const jsonAux = JSON.stringify(sourcesIncomeToInsert);
-            localStorage.setItem("sourcesIncome", jsonAux)
+          if (res.success) {
             return sourcesIncomeToInsert;
-          } 
+          }
           return [];
         })
       );
@@ -49,7 +47,9 @@ export class SourcesIncomeApi {
       );
   }
 
-  public deleteSourceIncome(sourceIncomeId: number): Observable<SourcesIncomeTable[]> {
+  public deleteSourceIncome(
+    sourceIncomeId: number
+  ): Observable<SourcesIncomeTable[]> {
     return this.http
       .delete<any>(this.baseUrl, {
         headers: this.headers,
