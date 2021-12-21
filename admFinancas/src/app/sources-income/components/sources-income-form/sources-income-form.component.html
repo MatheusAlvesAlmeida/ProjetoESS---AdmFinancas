@@ -80,7 +80,7 @@
         <button mat-icon-button color="primary" (click)="editData(element.id)" [disabled]="!this.actionButtons">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" (click)="removeData(element.id)" [disabled]="!this.actionButtons">
+        <button mat-icon-button color="warn" (click)="removeData(element.id)" [disabled]="!this.actionButtons" name="deleteButton">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
@@ -97,6 +97,7 @@
       (click)="confirmInput()"
       class="confirm-button"
       [disabled]="!this.confirmButton"
+      name="confirmButton"
     >
       Confirmar
     </button>
