@@ -76,6 +76,7 @@ export class ExpensesFormComponent implements OnInit {
         if (this.table) this.table.renderRows();
       });
     });
+    alert('Gasto fixo deletado com sucesso!');
   }
 
   editData(id: number) {
@@ -104,6 +105,7 @@ export class ExpensesFormComponent implements OnInit {
         });
       }
     });
+    alert('Gasto fixo editado com sucesso!');
   }
 
   checkEdit(obj: ExpensesTable) {
