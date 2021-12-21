@@ -11,8 +11,8 @@ import { SourcesIncomeAPI } from "./sources-income/sources-income-api";
 
 var api = express();
 
+//Instancias das APIs
 var expensesAPI: ExpensesAPI = new ExpensesAPI();
-
 var sourcesIncomeAPI: SourcesIncomeAPI = new SourcesIncomeAPI();
 
 var allowCrossDomain = function (req: any, res: any, next: any) {
@@ -73,6 +73,7 @@ api.delete(
   }
 );
 
+//Métodos do módulo de expenses
 api.put(
   "/api/sources-income/",
   function (req: express.Request, res: express.Response) {
@@ -112,6 +113,8 @@ api.delete(
     }
   }
 );
+
+//Métodos do módulo de users
 
 //Exportando servidor
 var server = api.listen(3000, function () {
