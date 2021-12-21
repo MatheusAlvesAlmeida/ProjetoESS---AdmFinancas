@@ -25,74 +25,89 @@ export class SourcesIncomeFormComponent implements OnInit {
   actionButtons: boolean = false;
   confirmButton: boolean = false;
 
-  constructor(public dialog: MatDialog, private readonly sourcesIncomeFacade: SourcesIncomeFacade) {
+  constructor(
+    public dialog: MatDialog,
+    private readonly sourcesIncomeFacade: SourcesIncomeFacade
+  ) {
     this.isLoading = this.sourcesIncomeFacade.isLoading();
     this.sourcesIncome = this.sourcesIncomeFacade.getSourcesIncomeTable();
   }
 
   ngOnInit(): void {
-    const storage = localStorage.getItem("sourcesIncome");
-    if (storage) {
-      this.dataSource = JSON.parse(storage);
-      const isSalary = this.isSalary()
-      if (isSalary) this.confirmButton = true;
-    }
+    this.sourcesIncomeFacade.fetchSourcesIncomeTable();
+    const newData = this.sourcesIncomeFacade.getSourcesIncomeTable();
+    newData.subscribe((data) => {
+      data.forEach((element) => {
+        this.dataSource.push(element);
+        if (this.table) this.table.renderRows();
+      });
+    });
   }
 
   displayedColumns: string[] = ['type', 'amount', 'actions'];
-  dataSource : SourcesIncomeTable[] = [];
+  dataSource: SourcesIncomeTable[] = [];
 
   @ViewChild(MatTable) table: MatTable<SourcesIncomeTable> | undefined;
-
-  addNewAmount() {
-    const newElement = {
-      id: this.dataSource.length,
-      type: this.enterType,
-      amount: this.enterAmount,
-    };
-    this.dataSource.push(newElement);
-    if (this.table) this.table.renderRows();
-    this.enterType = '';
-    this.enterAmount = 0;
-  }
-
-  isSalary () {
+  
+  isSalary() {
     let isSalary = false;
     if (this.dataSource.length) {
-      this.dataSource.forEach(item => {
-        if (item.type == "Salário") isSalary = true;
-      })
+      this.dataSource.forEach((item) => {
+        if (item.type == 'Salário') isSalary = true;
+      });
     }
     return isSalary;
   }
-
-  addSalary() {
-    const isSalary = this.isSalary();
-    if (!isSalary) {
+  
+  addNewAmount() {
+    if (this.enterAmount > 0) {
       const newElement = {
         id: this.dataSource.length,
-        type: 'Salário',
-        amount: this.enterSalary,
+        type: this.enterType,
+        amount: this.enterAmount,
       };
       this.dataSource.push(newElement);
       if (this.table) this.table.renderRows();
-      this.enterSalary = 0;
+      this.enterType = '';
+      this.enterAmount = 0;
+      this.actionButtons = false;
       this.confirmButton = true;
-    } else {
-      alert("Não é possível registar mais de um salário")
     }
-    
+  }
+
+  addSalary() {
+    if (this.enterSalary > 0) {
+      const isSalary = this.isSalary();
+      if (!isSalary) {
+        const newElement = {
+          id: this.dataSource.length,
+          type: 'Salário',
+          amount: this.enterSalary,
+        };
+        this.dataSource.push(newElement);
+        if (this.table) this.table.renderRows();
+        this.enterSalary = 0;
+        this.confirmButton = true;
+        this.actionButtons = false;
+      } else {
+        alert('Não é possível registar mais de um salário');
+      }
+    } else {
+      alert('Insira um salário maior do que 0');
+    }
   }
 
   removeData(id: number) {
-    this.dataSource = this.dataSource.filter((obj) => obj.id !== id);
-    if (this.table) this.table.renderRows();
-    if(this.dataSource.length == 0) {
-      this.confirmButton = false;
-    } else {
-      const isSalary = this.isSalary();
-      if (!isSalary) this.confirmButton = false;
-    }
+    console.log('num', id)
+    const result = this.sourcesIncomeFacade.deleteSourcesIncome(id);
+    console.log('res', result)
+    this.dataSource = [];
+    result.subscribe((data) => {
+      data.forEach((element) => {
+        this.dataSource.push(element);
+        if (this.table) this.table.renderRows();
+      });
+    });
   }
 
   editData(id: number) {
@@ -105,10 +120,16 @@ export class SourcesIncomeFormComponent implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result != null) {
-        this.dataSource[id] = result;
-        if (this.table) this.table.renderRows();
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res != null) {
+        const result = this.sourcesIncomeFacade.updateSourcesIncome(res);
+        this.dataSource = [];
+        result.subscribe((data) => {
+          data.forEach((element) => {
+            this.dataSource.push(element);
+            if (this.table) this.table.renderRows();
+          });
+        });
       }
     });
   }
@@ -118,7 +139,9 @@ export class SourcesIncomeFormComponent implements OnInit {
   }
 
   confirmInput() {
-    const result = this.sourcesIncomeFacade.insertSourcesIncome(this.dataSource);
+    const result = this.sourcesIncomeFacade.insertSourcesIncome(
+      this.dataSource
+    );
     this.dataSource = [];
     result.subscribe((data) => {
       data.forEach((element) => {
