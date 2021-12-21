@@ -35,14 +35,15 @@ export class ExpensesFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const sourcesIncomeStorage = localStorage.getItem("sourcesIncome");
-    if (sourcesIncomeStorage) {
-      let auxStorage = JSON.parse(sourcesIncomeStorage);
-      const sourceIncome = auxStorage.filter((item : any) => {
-        return item.type == "Salário"
-      })
-      this.salary = sourceIncome[0].amount;
-    }
+    this.expensesFacade.fetchExpensesTable();
+    const newData = this.expensesFacade.getExpensesTable();
+    newData.subscribe((data) => {
+      data.forEach((element) => {
+        this.dataSource.push(element);
+        this.actionButtons = true;
+        if (this.table) this.table.renderRows();
+      });
+    });
   }
 
   displayedColumns: string[] = ['percentage', 'type', 'actions'];
