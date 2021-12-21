@@ -468,3 +468,12 @@ unwatchForTargets()@TargetList.jsm:37
 destructor()@TargetList.jsm:109
 stop()@CDP.jsm:104
 close()@RemoteAgent.jsm:138
+1640085901459	geckodriver	INFO	Listening on 127.0.0.1:55899
+1640085901463	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "42237" "-no-remote" "-profile" "/tmp/rust_mozprofile00WN99"
+1640085909366	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile00WN99/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:42237/devtools/browser/4c197f82-ee7b-4529-98b7-71d724aac066
+1640085922434	Marionette	INFO	Listening on port 35951
+1640085922818	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
